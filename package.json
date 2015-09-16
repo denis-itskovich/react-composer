@@ -1,0 +1,27 @@
+{
+  "name": "react-composer",
+  "version": "0.0.1",
+  "description": "Composite UI framework for React JS",
+  "main": "src/react-composer.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denis-itskovich/react-composer.git"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "composite-ui"
+  ],
+  "author": "Denis Itskovich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denis-itskovich/react-composer/issues"
+  },
+  "homepage": "https://github.com/denis-itskovich/react-composer#readme"
+}

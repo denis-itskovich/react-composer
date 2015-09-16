@@ -1,0 +1,1 @@
+<div>{'Hello from ' + this.props.name}</div>

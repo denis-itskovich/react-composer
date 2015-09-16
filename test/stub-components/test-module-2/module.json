@@ -1,0 +1,5 @@
+{
+    "parts": {
+        "test-parts": ["test-part-2.1", "test-part-2.2"]
+    }
+}
