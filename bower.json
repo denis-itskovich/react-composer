@@ -5,6 +5,10 @@
   "authors": [
     "denis-itskovich <denis.itskovich@gmail.com>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/denis-itskovich/react-composer.git"
+  },
   "description": "Composite UI framework for React JS",
   "main": "src/composer.js",
   "keywords": [
@@ -17,6 +21,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    ".travis.yml",
     "test",
     "tests"
   ],
