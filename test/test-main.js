@@ -1,6 +1,8 @@
 var tests = Object
     .keys(window.__karma__.files)
-    .filter(RegExp.prototype.test.bind(/\.test\.js$/));
+    .filter(function(file) {
+        return /\.test\.js$/.test(file);
+    });
 
 requirejs.config({
     baseUrl: '/base',
