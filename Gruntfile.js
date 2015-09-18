@@ -94,6 +94,6 @@ module.exports = function(grunt) {
 
     // Default task.
     //grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
-    grunt.registerTask('build', ['react-templates', 'karma']);
+    grunt.registerTask('build', ['react-templates']);
     //grunt.registerTask('default', ['karma']);
 };
