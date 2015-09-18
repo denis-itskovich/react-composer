@@ -1,4 +1,4 @@
-define(['../../../bower_components/react/react', 'lodash', 'stub-components/test-part.rt'], function (React, _, template) {
+define(['react', 'lodash', 'stub-components/test-part.rt'], function (React, _, template) {
     'use strict';
 
     return React.createClass({

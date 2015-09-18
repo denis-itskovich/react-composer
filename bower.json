@@ -1,0 +1,29 @@
+{
+  "name": "react-composer",
+  "version": "0.0.1",
+  "homepage": "https://github.com/denis-itskovich/react-composer",
+  "authors": [
+    "denis-itskovich <denis.itskovich@gmail.com>"
+  ],
+  "description": "Composite UI framework for React JS",
+  "main": "src/composer.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "composite-ui"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "~3.10.1",
+    "react": "~0.13.3",
+    "requirejs": "~2.1.20",
+    "requirejs-plugins": "~1.0.3"
+  }
+}

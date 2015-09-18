@@ -20,8 +20,7 @@ module.exports = function(config) {
         files: [
             'bower_components/requirejs/require.js',
             {pattern: 'bower_components/**/*.js', included: false},
-            'js/require.conf.js',
-            {pattern: 'js/*.js', included: false},
+            {pattern: 'src/*.js', included: false},
             'test/test-main.js',
             {pattern: 'test/**/*.js', included: false},
             {pattern: 'test/**/*.json', included: false}
@@ -64,7 +63,7 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome'],
+        browsers: ['PhantomJS2'],
 
 
         // Continuous Integration mode
