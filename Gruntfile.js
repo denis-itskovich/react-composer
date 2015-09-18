@@ -91,9 +91,11 @@ module.exports = function(grunt) {
 //  grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-react-templates');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-bower-install');
 
     // Default task.
     //grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
-    grunt.registerTask('build', ['react-templates', 'karma']);
+    grunt.registerTask('install', ['bowerInstall']);
+    grunt.registerTask('build', ['install', 'react-templates', 'karma']);
     //grunt.registerTask('default', ['karma']);
 };
