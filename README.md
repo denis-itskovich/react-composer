@@ -1,1 +1,2 @@
-# react-composer
+## React Composer
+#### Composite UI framework
