@@ -85,12 +85,22 @@ define('composer', ['react', 'lodash'], function(React, _) {
                 for (var key in parts) {
                     if (parts.hasOwnProperty(key)) {
                         _.each(parts[key], function(part) {
-                            if (part[0] != '/') part = moduleName + '/' + part;
+                            var partDef = part;
+
+                            if (typeof(part) === "string") {
+                                partDef = { path: part, props: {} };
+                            } else {
+                                if (!partDef.hasOwnProperty('props')) {
+                                    partDef.props = {};
+                                }
+                            }
+
+                            if (partDef.path[0] != '/') partDef.path = moduleName + '/' + partDef.path;
 
                             if (self.partsMap.hasOwnProperty(key)) {
-                                self.partsMap[key].push(part);
+                                self.partsMap[key].push(partDef);
                             } else {
-                                self.partsMap[key] = [part];
+                                self.partsMap[key] = [partDef];
                             }
                         });
                     }
@@ -104,9 +114,14 @@ define('composer', ['react', 'lodash'], function(React, _) {
                 }
 
                 if (this.partsMap.hasOwnProperty(name)) {
-                    var paths = this.partsMap[name];
+                    var partDefs = this.partsMap[name];
+                    var paths = partDefs.map(function(def) { return def.path; });
+                    console.log('Loading part for paths: ' + paths);
                     require(paths, function() {
-                        callback(arguments);
+                        var resolvedParts = _.map(arguments, function(arg, i) {
+                            return { partClass: arg, props: partDefs[i].props };
+                        });
+                        callback(resolvedParts);
                     });
                 } else {
                     callback([]);
@@ -125,22 +140,36 @@ define('composer', ['react', 'lodash'], function(React, _) {
                 },
 
                 handlePartsLoaded: function(parts) {
-                    parts = _.map(parts, function(part) {
-                        return React.createElement(part, {});
-                    });
+                    console.log('Loaded ' + parts.length + ' parts');
 
-                    if (this.props.hasOwnProperty('wrapperElement')) {
-                        var props = this.props;
-                        parts = _.map(parts, function(part) {
-                            return React.createElement(props['wrapperElement'], props, part);
-                        });
+                    var props = this.props;
+                    var renderElements = function() {
+                        if (props.hasOwnProperty('itemElement')) {
+                            var itemElement = props['itemElement'];
+                            return _.map(parts, function(part) {
+                                var element = React.createElement(part.partClass, props);
+                                console.log('Wrapping with element: ' + itemElement.displayName);
+                                return React.createElement(itemElement, part.props, [element]);
+                            });
+                        } else {
+                            return _.map(parts, function(part) {
+                                console.log('Creating element: ' + part.partClass.displayName);
+                                return React.createElement(part.partClass, part.props);
+                            });
+                        }
                     }
 
-                    this.setState({children: parts});
+                    var elements = renderElements();
+                    this.setState({children: elements});
                 },
 
                 render: function() {
-                    return React.createElement('div', {}, this.state.children);
+                    var containerElement = this.props.hasOwnProperty('containerElement')
+                        ? this.props['containerElement']
+                        : 'div';
+
+                    console.log('Creating container element: ' + containerElement.displayName);
+                    return React.createElement(containerElement, this.props, this.state.children);
                 }
             })
         }
@@ -151,17 +180,6 @@ define('composer', ['react', 'lodash'], function(React, _) {
     Composer.instance = Composer();
     Composer.Container = Composer.instance.Container;
 
-    //composer.Container.Header = React.createClass({
-    //
-    //});
-    //
-    //composer.Container.Footer = React.createClass({
-    //
-    //});
-    //
-    //composer.Container.Body = React.createClass({
-    //
-    //});
-
     return Composer;
 });
+.

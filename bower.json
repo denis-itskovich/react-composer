@@ -1,6 +1,6 @@
 {
   "name": "react-composer",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/denis-itskovich/react-composer",
   "authors": [
     "denis-itskovich <denis.itskovich@gmail.com>"
@@ -21,7 +21,6 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    ".travis.yml",
     "test",
     "tests"
   ],
