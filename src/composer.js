@@ -182,4 +182,3 @@ define('composer', ['react', 'lodash'], function(React, _) {
 
     return Composer;
 });
-.
